@@ -30,7 +30,7 @@ const IMAGES = [
 
 const Section08 = ({ setModalImage }: TSection08Props) => {
   return (
-    <section className="relative flex min-h-dvh max-w-[100dvw] flex-col items-center justify-center overflow-x-hidden pb-28">
+    <section className="relative flex min-h-dvh max-w-[100dvw] flex-col items-center justify-center overflow-x-hidden pb-28 [contain-intrinsic-size:auto_120dvh] [content-visibility:auto]">
       <div className="text-center text-xl text-red-500 uppercase">Kỉ niệm cưới</div>
       <div className={cn('mb-8 text-center font-DancingScript text-4xl font-[600] text-red-800 sm:text-6xl ')}>Những khoảnh khắc đáng nhớ</div>
 

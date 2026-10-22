@@ -256,7 +256,14 @@ function ItemMusic(props: { mouseX: MotionValue; sizeTransform?: [number, number
 
   return (
     <>
-      <audio controls ref={audioRef} src="https://res.cloudinary.com/dcos6mpjy/video/upload/v1731195961/audio-01_oluwt2.mp3" className="hidden" onLoadedMetadata={onLoadedMetadata} />
+      <audio
+        controls
+        preload="metadata"
+        ref={audioRef}
+        src="https://res.cloudinary.com/dcos6mpjy/video/upload/v1731195961/audio-01_oluwt2.mp3"
+        className="hidden"
+        onLoadedMetadata={onLoadedMetadata}
+      />
       <IconContainer
         id={props?.id}
         extra={

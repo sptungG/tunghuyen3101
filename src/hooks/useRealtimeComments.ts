@@ -70,7 +70,9 @@ export function useRealtimeComments(maxComments = 50) {
     );
 
     return () => unsubscribe();
-  }, [maxComments, isFirstLoad]);
+    // Chỉ phụ thuộc maxComments: isFirstLoad trong deps khiến effect
+    // unsubscribe + subscribe lại ngay sau snapshot đầu (2 listeners).
+  }, [maxComments]);
 
   const addComment = async (userId: string, userName: string, message: string, userAvatar?: string) => {
     const db = getFirestore(getFirebaseApp());

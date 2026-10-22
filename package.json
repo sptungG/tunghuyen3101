@@ -14,8 +14,8 @@
   "dependencies": {
     "@rc-component/image": "^1.6.0",
     "@tailwindcss/vite": "^4.0.6",
-    "@tanstack/react-router": "1.170.41",
-    "@tanstack/react-start": "1.168.60",
+    "@tanstack/react-router": "1.170.45",
+    "@tanstack/react-start": "1.169.3",
     "@tanstack/react-virtual": "^3.13.18",
     "@unpic/react": "^1.0.2",
     "canvas-confetti": "^1.9.4",
@@ -34,11 +34,10 @@
     "react-toastify": "^11.0.5",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.0.6",
-    "vaul": "^1.1.2",
-    "vite-tsconfig-paths": "^6.0.2"
+    "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@tanstack/devtools-vite": "^0.3.11",
+    "@tanstack/devtools-vite": "^0.8.5",
     "@tanstack/eslint-config": "^0.3.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
@@ -46,15 +45,15 @@
     "@types/node": "^22.10.2",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react": "^6.1.2",
     "eslint": "^9.39.2",
     "eslint-plugin-perfectionist": "^5.3.1",
     "jsdom": "^27.0.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "typescript": "^5.7.2",
-    "vite": "^7.1.7",
-    "vitest": "^3.0.5",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5",
     "web-vitals": "^5.1.0"
   }
 }

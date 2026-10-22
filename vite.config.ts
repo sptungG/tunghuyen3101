@@ -4,7 +4,6 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import { nitro } from 'nitro/vite';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 const config = defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -15,27 +14,19 @@ const config = defineConfig(({ mode }) => {
     plugins: [
       // Only load devtools in development
       isDev && devtools(),
-      viteTsConfigPaths({
-        projects: ['./tsconfig.json'],
-      }),
       tailwindcss(),
       tanstackStart({
         router: { routeToken: '_layout' },
       }),
       nitro(),
-      viteReact({
-        // Speed up Fast Refresh
-        babel: {
-          plugins: isDev ? [] : undefined,
-        },
-      }),
+      viteReact(),
       // NOTE: không cần vite-plugin-compression — Vercel CDN tự nén gzip/brotli,
       // plugin chỉ làm phình output & làm chậm bước build/upload.
     ].filter(Boolean),
 
     ssr: {
       optimizeDeps: {
-        include: ['framer', 'lodash', '@rc-component/image'],
+        include: ['lodash', '@rc-component/image'],
       },
       noExternal: ['lodash', 'mac-scrollbar', '@rc-component/image'],
     },
@@ -44,8 +35,6 @@ const config = defineConfig(({ mode }) => {
     build: {
       // Increase chunk size warning limit
       chunkSizeWarningLimit: 1000,
-      // Enable minification
-      minify: 'esbuild',
 
       // Source maps only in development
       sourcemap: isDev,
@@ -58,6 +47,20 @@ const config = defineConfig(({ mode }) => {
 
       // Reduce CSS size
       cssMinify: true,
+
+      // Vite 8 (Rolldown/Oxc minifier): khôi phục hành vi cũ của `esbuild.drop`
+      // — xoá console.* ở production (debugger bị xoá mặc định bởi oxc).
+      ...(isDev
+        ? {}
+        : {
+            rolldownOptions: {
+              output: {
+                minify: {
+                  compress: { dropConsole: true },
+                },
+              },
+            },
+          }),
     },
 
     server: {
@@ -89,18 +92,11 @@ const config = defineConfig(({ mode }) => {
     resolve: {
       // Deduplicate packages
       dedupe: ['react', 'react-dom'],
+
+      // Vite 8 native tsconfig paths resolution (thay plugin vite-tsconfig-paths)
+      tsconfigPaths: true,
     },
 
-    // Enable esbuild for faster transforms
-    esbuild: {
-      logOverride: { 'this-is-undefined-in-esm': 'silent' },
-      // Remove console.log in production
-      ...(isDev
-        ? {}
-        : {
-            drop: ['console', 'debugger'],
-          }),
-    },
     // Performance hints
     logLevel: isDev ? 'info' : 'warn',
   } as UserConfig;

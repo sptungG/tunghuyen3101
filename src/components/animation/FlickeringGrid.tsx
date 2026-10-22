@@ -36,7 +36,7 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({ squareSize = 4, gridGap
     (canvas: HTMLCanvasElement) => {
       const canvasWidth = width || canvas.clientWidth;
       const canvasHeight = height || canvas.clientHeight;
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1); // cap 1: lưới nhấp nháy không cần độ nét retina, tiết kiệm 4x bộ nhớ canvas
       canvas.width = canvasWidth * dpr;
       canvas.height = canvasHeight * dpr;
       canvas.style.width = `${canvasWidth}px`;

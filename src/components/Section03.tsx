@@ -36,7 +36,11 @@ const Section03 = ({ pType, pName }: TSection03Props) => {
 
   return (
     <>
-      <section id="invitation" ref={ref} className={'relative flex min-h-dvh flex-col items-center justify-center font-Questrial text-lg max-sm:pt-20 sm:-translate-y-30'}>
+      <section
+        id="invitation"
+        ref={ref}
+        className={'relative flex min-h-dvh flex-col items-center justify-center font-Questrial text-lg [contain-intrinsic-size:auto_120dvh] [content-visibility:auto] max-sm:pt-20 sm:-translate-y-30'}
+      >
         <BgBookOpening
           isOpen={isOpen}
           pName={pName}

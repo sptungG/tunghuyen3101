@@ -8,79 +8,77 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as SplatRouteImport } from './routes/$'
-import { Route as AlbumsRouteImport } from './routes/albums'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as SplatRouteImport } from './routes/$';
+import { Route as AlbumsRouteImport } from './routes/albums';
 
 const SplatRoute = SplatRouteImport.update({
   id: '/$',
   path: '/$',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const AlbumsRoute = AlbumsRouteImport.update({
   id: '/albums',
   path: '/albums',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/$': typeof SplatRoute
-  '/albums': typeof AlbumsRoute
+  '/$': typeof SplatRoute;
+  '/albums': typeof AlbumsRoute;
 }
 export interface FileRoutesByTo {
-  '/$': typeof SplatRoute
-  '/albums': typeof AlbumsRoute
+  '/$': typeof SplatRoute;
+  '/albums': typeof AlbumsRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/$': typeof SplatRoute
-  '/albums': typeof AlbumsRoute
+  __root__: typeof rootRouteImport;
+  '/$': typeof SplatRoute;
+  '/albums': typeof AlbumsRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/$' | '/albums'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/$' | '/albums'
-  id: '__root__' | '/$' | '/albums'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/$' | '/albums';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/$' | '/albums';
+  id: '__root__' | '/$' | '/albums';
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  SplatRoute: typeof SplatRoute
-  AlbumsRoute: typeof AlbumsRoute
+  SplatRoute: typeof SplatRoute;
+  AlbumsRoute: typeof AlbumsRoute;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/$': {
-      id: '/$'
-      path: '/$'
-      fullPath: '/$'
-      preLoaderRoute: typeof SplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/$';
+      path: '/$';
+      fullPath: '/$';
+      preLoaderRoute: typeof SplatRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/albums': {
-      id: '/albums'
-      path: '/albums'
-      fullPath: '/albums'
-      preLoaderRoute: typeof AlbumsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/albums';
+      path: '/albums';
+      fullPath: '/albums';
+      preLoaderRoute: typeof AlbumsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   SplatRoute: SplatRoute,
   AlbumsRoute: AlbumsRoute,
-}
-export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+};
+export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 
-import type { getRouter } from './router.tsx'
-import type { createStart } from '@tanstack/react-start'
+import type { getRouter } from './router.tsx';
+import type { createStart } from '@tanstack/react-start';
 declare module '@tanstack/react-start' {
   interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
+    ssr: true;
+    router: Awaited<ReturnType<typeof getRouter>>;
   }
 }

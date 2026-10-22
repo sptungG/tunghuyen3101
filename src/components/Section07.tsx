@@ -14,7 +14,7 @@ type TSection07Props = {
 
 const Section07 = ({ onClickBtn01, setModalImage }: TSection07Props) => {
   return (
-    <section className="relative flex min-h-fit max-w-[100dvw] flex-col items-center justify-center overflow-x-hidden py-40">
+    <section className="relative flex min-h-fit max-w-[100dvw] flex-col items-center justify-center overflow-x-hidden py-40 [contain-intrinsic-size:auto_760px] [content-visibility:auto]">
       <div className="mb-1 text-center text-base text-red-500 uppercase max-sm:px-8">♥ ♥ ♥</div>
       <div className={cn('mb-4 text-center font-DancingScript text-4xl font-[600] text-red-800')}>Sự hiện diện của Quý khách là niềm vinh hạnh của gia đình chúng tôi!</div>
 
