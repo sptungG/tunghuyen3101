@@ -1,6 +1,7 @@
 import { Image } from '@unpic/react';
 import { useMediaQuery } from 'react-responsive';
 
+import { cdnCard, cdnView } from '@/libs/cdn';
 import { cn } from '@/libs/utils';
 
 import { MotionEffect } from './animation/MotionEffect';
@@ -22,9 +23,9 @@ const Section04 = (props: { setModalImage?: (src?: string) => void }) => {
         <MotionEffect inView inViewOnce slide={{ direction: 'left' }} className="relative flex size-[300px] items-center justify-center max-sm:mt-4 sm:size-[260px]">
           <RcImage
             height={'auto'}
-            loading="eager"
+            preview={{ src: cdnView('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129840/TH/ING07017_xoqy0s.jpg') }}
             rootClassName="sm:!size-[180px] max-sm:max-h-[340px] max-sm:!w-[280px]"
-            src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129840/TH/ING07017_xoqy0s.jpg"
+            src={cdnCard('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129840/TH/ING07017_xoqy0s.jpg')}
             width={'auto'}
             className="size-full cursor-pointer rounded-xl object-cover sm:rounded-full"
           />
@@ -44,7 +45,8 @@ const Section04 = (props: { setModalImage?: (src?: string) => void }) => {
           <RcImage
             alt="2611"
             height={'auto'}
-            src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129841/TH/ING07084_n2i20s.jpg"
+            preview={{ src: cdnView('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129841/TH/ING07084_n2i20s.jpg') }}
+            src={cdnCard('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129841/TH/ING07084_n2i20s.jpg')}
             width={'240px'}
             className="w-full cursor-pointer rounded-full object-cover sm:min-h-[456px]!"
           />
@@ -64,9 +66,9 @@ const Section04 = (props: { setModalImage?: (src?: string) => void }) => {
         <MotionEffect inView inViewOnce slide={{ direction: 'right' }} className="relative mb-3 flex size-[300px] items-center justify-center max-sm:order-3 max-sm:mt-6 sm:size-[260px]">
           <RcImage
             height={'auto'}
-            loading="eager"
+            preview={{ src: cdnView('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07329_xodtaa.jpg') }}
             rootClassName="sm:!size-[180px] max-sm:max-h-[340px] max-sm:!w-[280px]"
-            src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07329_xodtaa.jpg"
+            src={cdnCard('https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07329_xodtaa.jpg')}
             width={'auto'}
             className="size-full cursor-pointer rounded-xl object-cover sm:rounded-full"
           />

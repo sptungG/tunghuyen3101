@@ -40,6 +40,7 @@ export const Route = createRootRoute({
       //
       { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
       { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
+      { rel: 'preconnect', href: 'https://res.cloudinary.com' },
       { rel: 'stylesheet', href: RC_I_CSS },
       { rel: 'stylesheet', href: MS_CSS },
       { rel: 'stylesheet', href: APP_CSS },

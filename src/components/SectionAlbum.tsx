@@ -4,6 +4,7 @@ import { ArrowUpIcon } from 'lucide-react';
 import React, { useId } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { cdnAlbum, cdnView } from '@/libs/cdn';
 import { IMG_BLUR } from '@/libs/constant';
 import { cn } from '@/libs/utils';
 
@@ -11,14 +12,14 @@ import RcImage from './media/RcImage';
 
 // shuffleArray
 // shuffleArray
-function shuffleArray(array: string[]) {
+function shuffleArray(array: Array<readonly [string, string]>) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 }
-const ALBUMS_LIST = [
+const ALBUMS_URLS = [
   // "https://res.cloudinary.com/dcos6mpjy/image/upload/v1730487174/cuonglinh2611/albums/hjxx9mrwkilmlxpab95p.jpg",
   // "https://res.cloudinary.com/dcos6mpjy/image/upload/v1730487174/cuonglinh2611/albums/xr89qr0buoarwut8lhog.jpg",
   // "https://res.cloudinary.com/dcos6mpjy/image/upload/v1730487173/cuonglinh2611/albums/ddnk58qaa40et3opjmjl.jpg",
@@ -70,6 +71,8 @@ const ALBUMS_LIST = [
   'https://res.cloudinary.com/ngoviettung154/image/upload/v1768129845/TH/ING08014_krxrsg.jpg',
   'https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07416_kt4cix.jpg',
 ];
+// [thumbnail, fullResForPreview]
+const ALBUMS_LIST = ALBUMS_URLS.map((url) => [cdnAlbum(url), cdnView(url)] as const);
 const ALBUMS = shuffleArray(ALBUMS_LIST);
 
 const SectionAlbum = () => {
@@ -81,7 +84,7 @@ const SectionAlbum = () => {
   const virtualizer = useWindowVirtualizer({
     count: ALBUMS.length,
     estimateSize: (i) => 100,
-    overscan: mediaAbove640 ? 3 : 1000,
+    overscan: 3,
     lanes: mediaAbove640 ? 3 : 2,
     gap: mediaAbove640 ? 20 : 10,
     scrollMargin: 0,
@@ -108,7 +111,7 @@ const SectionAlbum = () => {
       <div ref={listRef} style={{ overflowAnchor: 'none' }} className="relative mx-auto w-full max-w-[1900px] px-1 sm:px-5">
         <div style={{ height: `${virtualizer.getTotalSize()}px` }} className="relative min-h-dvh w-full">
           {virtualizer.getVirtualItems().map((item) => {
-            const src = ALBUMS[item.index];
+            const [src, full] = ALBUMS[item.index];
             return (
               <button
                 key={uid + item.key}
@@ -132,7 +135,15 @@ const SectionAlbum = () => {
                 }
                 data-index={item.index}
               >
-                <RcImage alt="" fallback={IMG_BLUR} height={'auto'} src={src} width={'auto'} className="inset-0 !h-auto w-auto rounded object-cover object-top transition duration-200" />
+                <RcImage
+                  alt=""
+                  fallback={IMG_BLUR}
+                  height={'auto'}
+                  preview={{ src: full }}
+                  src={src}
+                  width={'auto'}
+                  className="inset-0 !h-auto w-auto rounded object-cover object-top transition duration-200"
+                />
               </button>
             );
           })}

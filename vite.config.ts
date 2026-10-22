@@ -4,7 +4,6 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import viteReact from '@vitejs/plugin-react';
 import { nitro } from 'nitro/vite';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
-import viteCompression from 'vite-plugin-compression';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 const config = defineConfig(({ mode }) => {
@@ -30,26 +29,8 @@ const config = defineConfig(({ mode }) => {
           plugins: isDev ? [] : undefined,
         },
       }),
-      // Gzip compression for production
-      !isDev &&
-        viteCompression({
-          verbose: true,
-          disable: false,
-          threshold: 10240, // Only compress files larger than 10kb
-          algorithm: 'gzip',
-          ext: '.gz',
-          deleteOriginFile: false,
-        }),
-      // Brotli compression for production (better compression than gzip)
-      !isDev &&
-        viteCompression({
-          verbose: true,
-          disable: false,
-          threshold: 10240,
-          algorithm: 'brotliCompress',
-          ext: '.br',
-          deleteOriginFile: false,
-        }),
+      // NOTE: không cần vite-plugin-compression — Vercel CDN tự nén gzip/brotli,
+      // plugin chỉ làm phình output & làm chậm bước build/upload.
     ].filter(Boolean),
 
     ssr: {

@@ -2,6 +2,7 @@ import { m, useMotionValueEvent, useScroll, useTransform } from 'motion/react';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { cdnCard, cdnView } from '@/libs/cdn';
 import { cn } from '@/libs/utils';
 
 import { MotionEffect } from '../animation/MotionEffect';
@@ -31,7 +32,7 @@ const dataText = [
     desc: 'Ngày 31 tháng 01 năm 2026, sau khoảng thời gian cùng trải qua những thăng trầm, chúng mình chính thức trở về chung một mái nhà, viết tiếp câu chuyện tình yêu đẹp như mơ.',
     image: 'https://res.cloudinary.com/ngoviettung154/image/upload/v1768129844/TH/ING07844_v3fjlh.jpg',
   },
-];
+].map((item) => ({ ...item, thumb: cdnCard(item.image), full: cdnView(item.image) }));
 
 const TimelineDating = (props: { className?: string; setModalImage?: (src?: string) => void }) => {
   const uid = useId();
@@ -91,7 +92,7 @@ const TimelineDating = (props: { className?: string; setModalImage?: (src?: stri
 
                   {/* Image */}
                   <div className="relative mb-4 flex h-[300px] w-[280px] flex-col items-center justify-center rounded-xl border-2 border-red-900/50 p-2">
-                    <RcImage alt={item.title} height={'100%'} src={item.image} width={'100%'} className="cursor-pointer rounded-lg object-cover" />
+                    <RcImage alt={item.title} height={'100%'} preview={{ src: item.full }} src={item.thumb} width={'100%'} className="cursor-pointer rounded-lg object-cover" />
                     <div className="absolute -top-2 -left-2 animate-[bounceY_12s_linear_infinite]">
                       <FlowerBlossomSvg className="h-auto w-20 rotate-[-82deg]" />
                     </div>
@@ -120,12 +121,7 @@ const TimelineDating = (props: { className?: string; setModalImage?: (src?: stri
         <div ref={ref} className="relative mx-auto max-w-7xl pb-20">
           {dataText.map((item, index) => (
             <div key={uid + index} className={cn('group flex justify-center pt-20 sm:items-center sm:pt-40', index % 2 !== 0 && 'sm:flex-row-reverse')}>
-              <MotionEffect
-                inView
-                inViewOnce
-                slide={{ direction: index % 2 === 0 ? 'left' : 'right' }}
-                className={cn('flex flex-col sm:max-w-md sm:flex-1', index % 2 === 0 ? 'sm:pr-5' : 'sm:pl-5')}
-              >
+              <MotionEffect inView inViewOnce slide={{ direction: index % 2 === 0 ? 'left' : 'right' }} className={cn('flex flex-col sm:max-w-md sm:flex-1', index % 2 === 0 ? 'sm:pr-5' : 'sm:pl-5')}>
                 <h3 style={formatActiveTitleStyle(scrollYProgressValue, index)} className={cn('mb-4 font-DancingScript text-4xl font-[600] transition-all sm:text-5xl ')}>
                   {item.title}
                 </h3>
@@ -139,7 +135,7 @@ const TimelineDating = (props: { className?: string; setModalImage?: (src?: stri
 
               <MotionEffect inView inViewOnce slide={{ direction: index % 2 === 0 ? 'right' : 'left' }} className="flex sm:max-w-md sm:flex-1">
                 <div className="relative mx-auto flex h-[360px] w-[300px] shrink-0 flex-col items-center justify-center rounded-xl border-2 border-red-900/50 p-2 sm:mx-16 sm:w-[250px] sm:rounded-full">
-                  <RcImage alt="2611" height={'100%'} src={item.image} width={'100%'} className=" cursor-pointer rounded-lg object-cover sm:rounded-full" />
+                  <RcImage alt="2611" height={'100%'} preview={{ src: item.full }} src={item.thumb} width={'100%'} className=" cursor-pointer rounded-lg object-cover sm:rounded-full" />
                   <div className="absolute top-0 left-[-10px] animate-[bounceY_12s_linear_infinite]">
                     <FlowerBlossomSvg className="h-auto w-25 rotate-[-82deg]" />
                   </div>

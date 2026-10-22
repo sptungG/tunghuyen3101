@@ -2,6 +2,7 @@ import { Image } from '@unpic/react';
 import { ImagesIcon } from 'lucide-react';
 import { memo } from 'react';
 
+import { cdnGrid, cdnView } from '@/libs/cdn';
 import { IMG_BLUR } from '@/libs/constant';
 import { cn } from '@/libs/utils';
 
@@ -46,8 +47,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
+            preview={{ src: cdnView(IMAGES[0]) }}
             rootClassName="max-h-[160px] max-sm:min-h-[160px] sm:h-auto"
-            src={IMAGES[0]}
+            src={cdnGrid(IMAGES[0])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="max-h-[160px] cursor-pointer rounded-xl object-cover max-sm:min-h-[160px] sm:h-auto"
@@ -56,8 +58,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
+            preview={{ src: cdnView(IMAGES[1]) }}
             rootClassName="max-h-[160px] max-sm:min-h-[160px] sm:h-auto"
-            src={IMAGES[1]}
+            src={cdnGrid(IMAGES[1])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="max-h-[160px] cursor-pointer rounded-xl object-cover max-sm:min-h-[160px] sm:h-auto"
@@ -66,9 +69,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
-            loading="eager"
+            preview={{ src: cdnView(IMAGES[2]) }}
             rootClassName="col-span-2"
-            src={IMAGES[2]}
+            src={cdnGrid(IMAGES[2])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="cursor-pointer rounded-xl object-cover"
@@ -79,9 +82,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
-            loading="eager"
+            preview={{ src: cdnView(IMAGES[3]) }}
             rootClassName="col-span-2"
-            src={IMAGES[3]}
+            src={cdnGrid(IMAGES[3])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="cursor-pointer rounded-xl object-cover max-sm:order-3"
@@ -90,8 +93,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
+            preview={{ src: cdnView(IMAGES[4]) }}
             rootClassName="max-h-[160px] max-sm:min-h-[160px] sm:h-auto"
-            src={IMAGES[4]}
+            src={cdnGrid(IMAGES[4])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="max-h-[160px] cursor-pointer rounded-xl object-cover max-sm:min-h-[160px] sm:h-auto"
@@ -100,8 +104,9 @@ const Section08 = ({ setModalImage }: TSection08Props) => {
             alt=""
             fallback={IMG_BLUR}
             height={'auto'}
+            preview={{ src: cdnView(IMAGES[5]) }}
             rootClassName="max-h-[160px] max-sm:min-h-[160px] sm:h-auto"
-            src={IMAGES[5]}
+            src={cdnGrid(IMAGES[5])}
             style={{ width: '100%', height: 'auto' }}
             width={'100%'}
             className="max-h-[160px] cursor-pointer rounded-xl object-cover max-sm:min-h-[160px] sm:h-auto"

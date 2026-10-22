@@ -2,6 +2,7 @@ import { Image } from '@unpic/react';
 import { memo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
+import { HERO_IMG_A, HERO_IMG_B, cdnHero, cdnView } from '@/libs/cdn';
 import { IMG_BLUR } from '@/libs/constant';
 import { cn } from '@/libs/utils';
 
@@ -63,7 +64,8 @@ const Section01 = ({ pType, onClickBtn01 }: TSection01Props) => {
               fallback={IMG_BLUR}
               height={'100%'}
               loading="eager"
-              src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07568_kb8kpb.jpg"
+              preview={{ src: cdnView(HERO_IMG_A) }}
+              src={cdnHero(HERO_IMG_A)}
               width={240}
               className="!h-auto !w-full cursor-pointer rounded-full object-cover"
             />
@@ -112,7 +114,8 @@ const Section01 = ({ pType, onClickBtn01 }: TSection01Props) => {
               fallback={IMG_BLUR}
               height={'100%'}
               loading="eager"
-              src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129841/TH/ING07062_onvh4q.jpg"
+              preview={{ src: cdnView(HERO_IMG_B) }}
+              src={cdnHero(HERO_IMG_B)}
               width={240}
               className="!h-auto !min-h-full !w-full cursor-pointer rounded-md object-cover object-[25%_center] sm:rounded-full"
             />
@@ -134,7 +137,8 @@ const Section01 = ({ pType, onClickBtn01 }: TSection01Props) => {
                   fallback={IMG_BLUR}
                   height={'100%'}
                   loading="eager"
-                  src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129843/TH/ING07568_kb8kpb.jpg"
+                  preview={{ src: cdnView(HERO_IMG_A) }}
+                  src={cdnHero(HERO_IMG_A)}
                   width={240}
                   className="!h-auto !min-h-full !w-full cursor-pointer rounded-md object-cover sm:rounded-full"
                 />
@@ -151,7 +155,8 @@ const Section01 = ({ pType, onClickBtn01 }: TSection01Props) => {
                   fallback={IMG_BLUR}
                   height={'100%'}
                   loading="eager"
-                  src="https://res.cloudinary.com/ngoviettung154/image/upload/v1768129841/TH/ING07062_onvh4q.jpg"
+                  preview={{ src: cdnView(HERO_IMG_B) }}
+                  src={cdnHero(HERO_IMG_B)}
                   width={240}
                   className="!h-auto !min-h-full !w-full cursor-pointer rounded-md object-cover object-[25%_center] sm:rounded-full"
                 />

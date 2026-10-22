@@ -7,6 +7,7 @@ import { Suspense, lazy, useState } from 'react';
 import PageLoading from '@/components/background/PageLoading';
 import Section01 from '@/components/Section01';
 import SEO from '@/components/SEO';
+import { HERO_IMG_A, HERO_IMG_B, cdnHero } from '@/libs/cdn';
 
 const FloatingDock = lazy(() => import('@/components/FloatingDock'));
 const LivestreamComments = lazy(() => import('@/components/LivestreamComments'));
@@ -37,6 +38,11 @@ export const Route = createFileRoute('/$')({
     const pName = pNameRaw ? pNameRaw.replace(/-/g, ' ') : '';
     return {
       meta: [{ title: [pName || 'Thân mời', 'Thu Huyền Việt Tùng', '✨ 🎉 🎊'].filter(Boolean).join(' | ') }, { name: 'description', content: '✨ 🎉 🎊 • ✨ 🎉 🎊 • ✨ 🎉 🎊 • ✨ 🎉 🎊' }],
+      // Preload ảnh hero để LCP tránh đợi tuần tự: head -> JS -> render -> fetch ảnh
+      links: [
+        { rel: 'preload', as: 'image', fetchPriority: 'high', href: cdnHero(HERO_IMG_A) },
+        { rel: 'preload', as: 'image', fetchPriority: 'high', href: cdnHero(HERO_IMG_B) },
+      ],
     };
   },
 });

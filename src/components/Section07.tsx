@@ -1,6 +1,7 @@
 import { m } from 'motion/react';
 import { memo } from 'react';
 
+import { cdnCard, cdnView } from '@/libs/cdn';
 import { IMG_BLUR } from '@/libs/constant';
 import { cn } from '@/libs/utils';
 
@@ -60,8 +61,8 @@ const Section07 = ({ onClickBtn01, setModalImage }: TSection07Props) => {
                   alt="3101"
                   fallback={IMG_BLUR}
                   height={300}
-                  loading={index === 2 ? 'eager' : 'lazy'}
-                  src={image}
+                  preview={{ src: cdnView(image) }}
+                  src={cdnCard(image)}
                   style={index === 2 ? { width: 320, height: 320 } : { width: 300, height: 300 }}
                   width={300}
                   className="shrink-0 cursor-pointer rounded-lg object-cover"
